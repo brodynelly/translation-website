@@ -98,6 +98,9 @@ function Translator({ originalArticle, resetApp, props = {} }) {
 
 	return (
 		<div>
+			<div className="alert alert-info" role="status">
+				{translationNotice}
+			</div>
 			<Row>
 				<Col md="10">
 					<Card>
