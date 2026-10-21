@@ -9,7 +9,7 @@ Requirements: Node.js and npm. The translation API module reads `REACT_APP_AZURE
 ```sh
 git clone https://github.com/brodynelly/translation-website.git
 cd translation-website
-npm ci
+npm install
 npm start
 ```
 
