@@ -16,7 +16,7 @@ yarn start
 
 ## Checks
 
-`yarn build` creates the static production bundle. The package manifest defines a Jest test command, but the repository currently contains no test files, so this project does not claim automated test coverage. CI verifies the dependency lockfile and production build. The `deploy` script publishes with `gh-pages`; it is not used by these instructions.
+`yarn test --watchAll=false` runs the credential-free Translator view smoke test. `yarn build` creates the static production bundle. CI verifies dependency installation from the committed lockfile, the smoke test, and the build. The `deploy` script publishes with `gh-pages`; it is not used by these instructions.
 
 ## Attribution and limitations
 
