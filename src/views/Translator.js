@@ -16,11 +16,10 @@ import {
 // core components
 
 
-function Translator({ originalArticle, resetApp, props = {} }) {
+function Translator({ originalArticle }) {
 	const [selectedWords, setSelectedWords] = useState([]);
 	const [translatedSentence, setTranslatedSentence] = useState("");
 	const [isBlockquoteVisible, setIsBlockquoteVisible] = useState(false);
-	const [notes, setNotes] = useState("");
 	const [translationNotice, setTranslationNotice] = useState(
 		"Translation is disabled in this browser-only demo. A server-side proxy is required before using a translation provider."
 	);
@@ -28,12 +27,6 @@ function Translator({ originalArticle, resetApp, props = {} }) {
 	const containerStyles = {
 		width: "400px", // Adjust the width as needed
 		height: "300px", // Adjust the height as needed
-	};
-
-	const titleBarStyles = {
-		buttonContainer: {
-			display: "none", // Hide the button container
-		},
 	};
 
 	const handleTextClick = (word) => {
@@ -92,10 +85,6 @@ function Translator({ originalArticle, resetApp, props = {} }) {
 		[handleTranslateClick],
 		[clearSelection]
 	); // Add any other dependencies if needed
-	const handleNoteChange = (e) => {
-		setNotes(e.target.value);
-	};
-
 	return (
 		<div>
 			<div className="alert alert-info" role="status">
@@ -152,9 +141,6 @@ function Translator({ originalArticle, resetApp, props = {} }) {
                           width="30px"
 													placeholder="Place notes here"
 													style={{ fontSize: "10px", fontFamily: " Courier New " }}
-													onChange={(e) => {
-														// Handle user input (e.target.value)
-													}}
 												></textarea>
 												<code>
 

@@ -33,7 +33,7 @@ import { BackgroundColorContext } from "contexts/BackgroundColorContext";
 
 var ps;
 
-function RTL(props) {
+function RTL() {
   const location = useLocation();
   const mainPanelRef = React.useRef(null);
   const [sidebarOpened, setsidebarOpened] = React.useState(
@@ -107,7 +107,7 @@ function RTL(props) {
       }
     });
   };
-  const getBrandText = (path) => {
+  const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {
       if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
         return routes[i].name;
@@ -133,7 +133,7 @@ function RTL(props) {
               />
               <div className="main-panel" ref={mainPanelRef} data={color}>
                 <RTLNavbar
-                  brandText={getBrandText(location.pathname)}
+                  brandText={getBrandText()}
                   toggleSidebar={toggleSidebar}
                   sidebarOpened={sidebarOpened}
                 />
