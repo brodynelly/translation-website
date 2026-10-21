@@ -1,56 +1,24 @@
 # Translation Website
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![CI](https://github.com/brodynelly/translation-website/actions/workflows/ci.yml/badge.svg)](https://github.com/brodynelly/translation-website/actions/workflows/ci.yml) ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
+A coursework React app based on the Creative Tim Black Dashboard React template. Its Translator view accepts Spanish text and requests a Spanish-to-English translation from Microsoft Azure Translator. The interface also includes the upstream dashboard template.
 
-Web app for reading articles in a foreign language with inline translation via Google Translate API. Built to help with vocabulary acquisition by translating in-context rather than whole passages.
+## Local setup
 
-## Tech Stack
+Requirements: Node.js and npm. The translation API module reads `REACT_APP_AZURE_SUBSCRIPTION_KEY` and uses the `centralus` Azure region. This is a browser application: a CRA environment variable is compiled into client assets and does not protect a real subscription key. Do not put a production credential here or deploy the client with a real key. A server-side proxy with secret storage and request controls is needed before using a real Azure credential. No API key is provided in this repository.
 
-- **React** — UI
-- **Node.js / Express** — backend API proxy
-- **Google Translate API** — translation engine
-- **Bootstrap** — styling
-- **Axios** — HTTP client
-
-## Getting Started
-
-**Prerequisites:** Node.js 18+, npm or yarn, Google Translate API key
-
-```bash
-git clone https://github.com/brodynelly/translation-website
+```sh
+git clone https://github.com/brodynelly/translation-website.git
 cd translation-website
-npm install
-```
-
-Set up environment variables:
-
-```bash
-cp .env.example .env
-# Add your GOOGLE_TRANSLATE_API_KEY to .env
-```
-
-```bash
+npm ci
 npm start
 ```
 
-Open `http://localhost:3000` in your browser.
+Without a configured local translation key, the translation action is unavailable. The repository does not contain an Express backend or `.env.example`; the previous setup instructions claiming these were removed.
 
-## Usage
+## Checks
 
-1. Paste a Spanish (or other language) article URL or text into the input
-2. Select source and target languages
-3. Click any word or sentence to see its translation inline
+`npm test` runs the Create React App test runner. `npm run build` creates the static production bundle. The repository currently has no dedicated CI verification workflow. The `deploy` script publishes the `build` directory with `gh-pages`; it is intentionally not used by these instructions.
 
-## Project Structure
+## Attribution
 
-```
-src/
-├── components/     # Reusable UI components
-├── views/          # Page-level components
-├── routes/         # Route definitions
-└── index.js        # App entry point
-```
-
-## License
-
-MIT
+This project retains substantial Creative Tim Black Dashboard React template code and its upstream license and notices. See [LICENSE.md](LICENSE.md) and the copyright notices in the source. The translator integration is a separate project addition; this repository does not claim ownership of the upstream dashboard template.

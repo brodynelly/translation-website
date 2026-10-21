@@ -1,9 +1,13 @@
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
-const AZURE_SUBSCRIPTION_KEY = "ea8f03351bdb444bbdc32de8a5d701cf";
+const AZURE_SUBSCRIPTION_KEY = process.env.REACT_APP_AZURE_SUBSCRIPTION_KEY;
 const AZURE_REGION = "centralus"; // e.g., 'westus'
 const AZURE_ENDPOINT = `https://api.cognitive.microsofttranslator.com`;
+
+if (!AZURE_SUBSCRIPTION_KEY) {
+	throw new Error('Set REACT_APP_AZURE_SUBSCRIPTION_KEY for local translation.');
+}
 
 const translateText = async (text, targetLanguage) => {
 	try {
