@@ -15,31 +15,10 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
 // nodejs library that concatenates classes
 
-function AdminNavbar(props) {
-  const [collapseOpen, setcollapseOpen] = React.useState(false);
-  const [modalSearch, setmodalSearch] = React.useState(false);
-  const [color, setcolor] = React.useState("navbar-transparent");
-  React.useEffect(() => {
-    window.addEventListener("resize", updateColor);
-    // Specify how to clean up after this effect:
-    return function cleanup() {
-      window.removeEventListener("resize", updateColor);
-    };
-  });
-  // function that adds color white/transparent to the navbar on resize (this is for the collapse)
-  const updateColor = () => {
-    if (window.innerWidth < 993 && collapseOpen) {
-      setcolor("bg-white");
-    } else {
-      setcolor("navbar-transparent");
-    }
-  };
-  // this function opens and closes the collapse on small devices
-  
-
+function AdminNavbar() {
+  return null;
 }
 
 export default AdminNavbar;

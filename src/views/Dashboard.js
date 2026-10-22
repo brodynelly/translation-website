@@ -14,7 +14,7 @@ import {
 	Col,
 } from "reactstrap";
 
-function Dashboard(props) {
+function Dashboard() {
 
 	const [screen, setScreen] = useState(1); // Initial screen
 	const [articleInput, setArticleInput] = useState("");

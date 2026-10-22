@@ -1,56 +1,23 @@
 # Translation Website
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![CI](https://github.com/brodynelly/translation-website/actions/workflows/ci.yml/badge.svg)](https://github.com/brodynelly/translation-website/actions/workflows/ci.yml) ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
+A coursework React app built on the Creative Tim Black Dashboard React template. The UI accepts Spanish text and lets a reader select words, but live translation is disabled: the earlier implementation called Azure Translator directly from the browser and included a subscription key in public client code. A server-side proxy with protected credentials is needed before translation can safely be enabled.
 
-Web app for reading articles in a foreign language with inline translation via Google Translate API. Built to help with vocabulary acquisition by translating in-context rather than whole passages.
+## Local setup
 
-## Tech Stack
+Requirements: Node.js 20 and Corepack. This repository uses the committed Yarn v1 lockfile.
 
-- **React** — UI
-- **Node.js / Express** — backend API proxy
-- **Google Translate API** — translation engine
-- **Bootstrap** — styling
-- **Axios** — HTTP client
-
-## Getting Started
-
-**Prerequisites:** Node.js 18+, npm or yarn, Google Translate API key
-
-```bash
-git clone https://github.com/brodynelly/translation-website
+```sh
+git clone https://github.com/brodynelly/translation-website.git
 cd translation-website
-npm install
+corepack prepare yarn@1.22.22 --activate
+yarn install --frozen-lockfile
+yarn start
 ```
 
-Set up environment variables:
+## Checks
 
-```bash
-cp .env.example .env
-# Add your GOOGLE_TRANSLATE_API_KEY to .env
-```
+`yarn test --watchAll=false` runs the credential-free Translator view smoke test. `yarn build` creates the static production bundle. CI verifies dependency installation from the committed lockfile, the smoke test, and the build. The `deploy` script publishes with `gh-pages`; it is not used by these instructions.
 
-```bash
-npm start
-```
+## Attribution and limitations
 
-Open `http://localhost:3000` in your browser.
-
-## Usage
-
-1. Paste a Spanish (or other language) article URL or text into the input
-2. Select source and target languages
-3. Click any word or sentence to see its translation inline
-
-## Project Structure
-
-```
-src/
-├── components/     # Reusable UI components
-├── views/          # Page-level components
-├── routes/         # Route definitions
-└── index.js        # App entry point
-```
-
-## License
-
-MIT
+This repository retains substantial Creative Tim Black Dashboard React template code. See [LICENSE.md](LICENSE.md) and the notices in the source. The translation UI is a coursework addition. No production translation backend, secret management, or provider credential is configured.

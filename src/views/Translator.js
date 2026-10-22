@@ -2,7 +2,6 @@ import {
 	useState,
 	useEffect,
 } from "react";
-import translateText from "./api";
 import "../assets/css/black-dashboard-react.css";
 import Draggable from "react-draggable";
 // reactstrap components
@@ -17,21 +16,17 @@ import {
 // core components
 
 
-function Translator({ originalArticle, resetApp, props = {} }) {
+function Translator({ originalArticle }) {
 	const [selectedWords, setSelectedWords] = useState([]);
 	const [translatedSentence, setTranslatedSentence] = useState("");
 	const [isBlockquoteVisible, setIsBlockquoteVisible] = useState(false);
-	const [notes, setNotes] = useState("");
+	const [translationNotice, setTranslationNotice] = useState(
+		"Translation is disabled in this browser-only demo. A server-side proxy is required before using a translation provider."
+	);
 
 	const containerStyles = {
 		width: "400px", // Adjust the width as needed
 		height: "300px", // Adjust the height as needed
-	};
-
-	const titleBarStyles = {
-		buttonContainer: {
-			display: "none", // Hide the button container
-		},
 	};
 
 	const handleTextClick = (word) => {
@@ -58,15 +53,12 @@ function Translator({ originalArticle, resetApp, props = {} }) {
 		});
 	};
 
-	const handleTranslateClick = async () => {
-		try {
-			const selectedSentence = selectedWords.join(" ");
-			const translationResult = await translateText(selectedSentence, "en");
-			setTranslatedSentence(translationResult);
-			setIsBlockquoteVisible(true);
-		} catch (error) {
-			console.error("Translation error:", error.message);
-		}
+	const handleTranslateClick = () => {
+		setTranslatedSentence("");
+		setIsBlockquoteVisible(false);
+		setTranslationNotice(
+			"Translation is disabled in this browser-only demo. A server-side proxy is required before using a translation provider."
+		);
 	};
 	const clearSelection = () => {
 		setSelectedWords([]);
@@ -93,12 +85,11 @@ function Translator({ originalArticle, resetApp, props = {} }) {
 		[handleTranslateClick],
 		[clearSelection]
 	); // Add any other dependencies if needed
-	const handleNoteChange = (e) => {
-		setNotes(e.target.value);
-	};
-
 	return (
 		<div>
+			<div className="alert alert-info" role="status">
+				{translationNotice}
+			</div>
 			<Row>
 				<Col md="10">
 					<Card>
@@ -150,12 +141,9 @@ function Translator({ originalArticle, resetApp, props = {} }) {
                           width="30px"
 													placeholder="Place notes here"
 													style={{ fontSize: "10px", fontFamily: " Courier New " }}
-													onChange={(e) => {
-														// Handle user input (e.target.value)
-													}}
 												></textarea>
 												<code>
-													
+
 												</code>
 											</code>
 										</div>
